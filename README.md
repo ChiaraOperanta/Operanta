@@ -1,2 +1,2 @@
-# OperantaWebite
+# Operanta
 Operanta company website
