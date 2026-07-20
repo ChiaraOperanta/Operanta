@@ -1,941 +1,845 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
-  <title>Operanta — Consulting by Chiara Graniero</title>
+<title>Operanta — Consulting by Chiara Graniero</title>
 
-  <meta
-    name="description"
-    content="Operanta helps growing and transforming teams bring structure to operations, turn strategic priorities into execution, and build better ways of working."
-  >
+<meta
+  content="Operanta helps growing and transforming teams bring structure to operations, turn strategic priorities into execution, and build better ways of working."
+  name="description"
+/>
 
-  <link
-    href="assets/operanta-favicon-light.png"
-    rel="icon"
-    type="image/png"
-  >
+<link
+  href="assets/operanta-favicon-light.png"
+  rel="icon"
+  type="image/png"
+/>
 
-  <style>
-    :root {
-      --bg: #F7F4EE;
-      --surface: #FFFFFF;
-      --text: #1A1A1F;
-      --muted: rgba(26, 26, 31, 0.62);
-      --line: rgba(26, 26, 31, 0.14);
-      --violet: #6B5BA6;
-      --yellow: #F2C94C;
-      --max: 1180px;
+<style>
+  :root {
+    --bg: #F7F4EE;
+    --surface: #FFFFFF;
+    --text: #1A1A1F;
+    --muted: rgba(26, 26, 31, 0.62);
+    --line: rgba(26, 26, 31, 0.14);
+    --violet: #6B5BA6;
+    --yellow: #F2C94C;
+    --max: 1180px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family:
+      Inter,
+      ui-sans-serif,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+    line-height: 1.5;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .container {
+    width: min(calc(100% - 40px), var(--max));
+    margin: 0 auto;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid var(--line);
+    background: rgba(247, 244, 238, 0.94);
+    backdrop-filter: blur(10px);
+  }
+
+  .nav {
+    min-height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+  }
+
+  .brand-logo {
+    display: block;
+    width: auto;
+    height: 68px;
+    object-fit: contain;
+  }
+
+  .footer-brand .brand-logo {
+    height: 68px;
+  }
+
+  nav {
+    display: flex;
+    gap: 28px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  nav a:hover {
+    color: var(--text);
+  }
+
+  .hero {
+    min-height: 680px;
+    display: grid;
+    align-items: center;
+    padding: 96px 0 100px;
+  }
+
+  .eyebrow {
+    margin: 0 0 22px;
+    color: var(--violet);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    max-width: 850px;
+    margin: 0;
+    font-size: clamp(50px, 6.1vw, 82px);
+    line-height: 0.98;
+    letter-spacing: -0.058em;
+    font-weight: 700;
+  }
+
+  .hero-bottom {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 40px;
+    margin-top: 48px;
+  }
+
+  .hero-copy {
+    max-width: 720px;
+    margin: 0;
+    color: var(--muted);
+    font-size: clamp(18px, 1.8vw, 22px);
+    line-height: 1.58;
+  }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .button {
+    min-height: 48px;
+    padding: 0 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--text);
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 160ms ease;
+  }
+
+  .button.primary {
+    background: var(--violet);
+    border-color: var(--violet);
+    color: #FFFFFF;
+  }
+
+  .button.primary:hover {
+    filter: brightness(0.92);
+    transform: translateY(-1px);
+  }
+
+  .button.secondary:hover {
+    background: var(--surface);
+    transform: translateY(-1px);
+  }
+
+  section {
+    border-top: 1px solid var(--line);
+    padding: 108px 0;
+  }
+
+  .section-label {
+    margin: 0 0 55px;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  #services .section-label,
+  .audience-section .section-label,
+  .clients-section .section-label,
+  .expertise-section .section-label {
+    margin-bottom: 42px;
+    color: var(--violet);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    column-gap: 42px;
+    row-gap: 72px;
+    align-items: start;
+  }
+
+  .service {
+    grid-column: span 2;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+
+  .service:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+
+  .service:nth-child(5) {
+    grid-column: 4 / span 2;
+  }
+
+  .service h2 {
+    min-height: 66px;
+    margin: 0 0 14px;
+    font-size: clamp(24px, 2vw, 29px);
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+    font-weight: 700;
+  }
+
+  .service .lead {
+    min-height: 74px;
+    margin: 0 0 14px;
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.42;
+    font-weight: 500;
+  }
+
+  .service p {
+    max-width: none;
+    margin: 0;
+    color: var(--muted);
+    font-size: 15.5px;
+    line-height: 1.56;
+  }
+
+  .audience-copy,
+  .expertise-copy {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 42px;
+    align-items: start;
+  }
+
+  .audience-copy > *,
+  .expertise-copy > * {
+    margin: 0;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+
+  .audience-copy h2,
+  .expertise-copy h2 {
+    max-width: 520px;
+    font-size: clamp(24px, 2vw, 29px);
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+    font-weight: 700;
+  }
+
+  .audience-copy p,
+  .expertise-copy p {
+    max-width: 560px;
+    color: var(--muted);
+    font-size: 15.5px;
+    line-height: 1.56;
+  }
+
+  .expertise-copy p strong {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 30px;
+    align-items: center;
+  }
+
+  .client-logo {
+    min-height: 112px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 12px;
+  }
+
+  .client-logo img {
+    display: block;
+    max-width: 100%;
+    max-height: 46px;
+    object-fit: contain;
+    opacity: 1;
+    transition: transform 160ms ease;
+  }
+
+  .client-logo:hover img {
+    transform: translateY(-1px);
+  }
+
+  .client-logo.logo-social img {
+    max-height: 72px;
+    max-width: 104px;
+  }
+
+  .client-logo.logo-dno img {
+    max-height: 76px;
+    max-width: 106px;
+  }
+
+  .client-logo.logo-adevinta img {
+    max-height: 48px;
+    max-width: 170px;
+  }
+
+  .client-logo.logo-marktplaats img {
+    max-height: 48px;
+    max-width: 190px;
+  }
+
+  .client-logo.logo-netranks img {
+    max-height: 46px;
+    max-width: 190px;
+  }
+
+  .about {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 76px;
+    align-items: center;
+  }
+
+  .portrait {
+    width: 320px;
+    aspect-ratio: 1;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .portrait img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: 56% 28%;
+  }
+
+  .about-copy h2,
+  .contact h2 {
+    margin: 0;
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 1;
+    letter-spacing: -0.055em;
+  }
+
+  .about-copy > p:not(.section-label) {
+    max-width: 720px;
+    margin: 30px 0 0;
+    color: var(--muted);
+    font-size: clamp(18px, 1.8vw, 22px);
+    line-height: 1.58;
+    font-weight: 400;
+  }
+
+  .credibility {
+    margin-top: 30px;
+    padding-top: 26px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 15.5px;
+    font-weight: 400;
+    line-height: 1.56;
+  }
+
+  .credibility p {
+    max-width: 720px;
+    margin: 0;
+  }
+
+  .credibility .about-personal-heading {
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  .credibility .about-personal-body {
+    margin-top: 18px;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  .contact .section-label {
+    color: var(--violet);
+  }
+
+  .contact {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 120px;
+  }
+
+  .contact::after {
+    content: "";
+    position: absolute;
+    width: 64px;
+    height: 8px;
+    border-radius: 20px;
+    background: var(--yellow);
+    right: 7%;
+    bottom: 70px;
+  }
+
+  .contact p {
+    max-width: 690px;
+    margin: 28px 0 38px;
+    color: var(--muted);
+    font-size: 21px;
+  }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 30px 0;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  .footer-meta {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  @media (max-width: 1100px) {
+    .services-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 54px 42px;
     }
 
-    * {
-      box-sizing: border-box;
+    .service,
+    .service:nth-child(4),
+    .service:nth-child(5) {
+      grid-column: auto;
     }
 
-    html {
-      scroll-behavior: smooth;
+    .service h2,
+    .service .lead {
+      min-height: auto;
+    }
+  }
+
+  @media (max-width: 960px) {
+    .audience-copy,
+    .expertise-copy,
+    .about,
+    .hero-bottom {
+      grid-template-columns: 1fr;
     }
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family:
-        Inter,
-        ui-sans-serif,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-      line-height: 1.5;
+    .clients-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
+  }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
+  @media (max-width: 720px) {
     .container {
-      width: min(calc(100% - 40px), var(--max));
-      margin: 0 auto;
+      width: min(calc(100% - 36px), var(--max));
     }
 
     header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      border-bottom: 1px solid var(--line);
-      background: rgba(247, 244, 238, 0.94);
-      backdrop-filter: blur(10px);
+      position: static;
+      backdrop-filter: none;
     }
 
     .nav {
-      min-height: 84px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
+      min-height: auto;
+      padding: 14px 0 12px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
     }
 
     .brand {
-      display: inline-flex;
-      align-items: center;
-      flex: 0 0 auto;
+      justify-content: center;
     }
 
     .brand-logo {
-      display: block;
-      width: auto;
-      height: 68px;
-      object-fit: contain;
-    }
-
-    .footer-brand .brand-logo {
-      height: 58px;
+      height: 56px;
+      max-width: 100%;
     }
 
     nav {
       display: flex;
-      gap: 28px;
-      color: var(--muted);
-      font-size: 14px;
+      width: 100%;
+      justify-content: center;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    nav a {
+      flex: 1 1 0;
+      padding: 9px 8px;
+      text-align: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.34);
     }
 
     nav a:hover {
-      color: var(--text);
+      background: var(--surface);
     }
 
     .hero {
-      min-height: 680px;
-      display: grid;
-      align-items: center;
-      padding: 96px 0 100px;
+      min-height: auto;
+      padding: 58px 0 64px;
     }
 
     .eyebrow {
-      margin: 0 0 22px;
-      color: var(--violet);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+      margin-bottom: 18px;
+      font-size: 11px;
+      line-height: 1.5;
+      letter-spacing: 0.12em;
     }
 
     h1 {
-      max-width: 850px;
-      margin: 0;
-      font-size: clamp(50px, 6.1vw, 82px);
-      line-height: 0.98;
-      letter-spacing: -0.058em;
-      font-weight: 700;
+      max-width: 100%;
+      font-size: clamp(40px, 12vw, 52px);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
     }
 
     .hero-bottom {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: end;
-      gap: 40px;
-      margin-top: 48px;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin-top: 32px;
     }
 
-    .hero-copy {
-      max-width: 720px;
-      margin: 0;
-      color: var(--muted);
-      font-size: clamp(18px, 1.8vw, 22px);
-      line-height: 1.58;
+    .hero-copy,
+    .about-copy > p:not(.section-label) {
+      max-width: 100%;
+      font-size: 18px;
+      line-height: 1.55;
     }
 
     .actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
 
     .button {
+      width: 100%;
       min-height: 48px;
-      padding: 0 20px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--text);
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 700;
-      transition: 160ms ease;
-    }
-
-    .button.primary {
-      background: var(--violet);
-      border-color: var(--violet);
-      color: #FFFFFF;
-    }
-
-    .button.primary:hover {
-      filter: brightness(0.92);
-      transform: translateY(-1px);
-    }
-
-    .button.secondary:hover {
-      background: var(--surface);
-      transform: translateY(-1px);
+      padding: 0 14px;
     }
 
     section {
-      border-top: 1px solid var(--line);
-      padding: 108px 0;
+      padding: 68px 0;
     }
 
-    .section-label {
-      margin: 0 0 55px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
+    .section-label,
     #services .section-label,
     .audience-section .section-label,
     .clients-section .section-label,
     .expertise-section .section-label {
-      margin-bottom: 42px;
-      color: var(--violet);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
+      margin-bottom: 30px;
+      font-size: 12px;
     }
 
     .services-grid {
-      display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      column-gap: 42px;
-      row-gap: 72px;
-      align-items: start;
+      grid-template-columns: 1fr;
+      gap: 44px;
     }
 
-    .service {
-      grid-column: span 2;
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
-    }
-
-    .service:nth-child(4) {
-      grid-column: 2 / span 2;
-    }
-
+    .service,
+    .service:nth-child(4),
     .service:nth-child(5) {
-      grid-column: 4 / span 2;
+      grid-column: auto;
+      padding-top: 16px;
     }
 
     .service h2 {
-      min-height: 66px;
-      margin: 0 0 14px;
-      font-size: clamp(24px, 2vw, 29px);
+      min-height: 0;
+      margin-bottom: 12px;
+      font-size: 28px;
       line-height: 1.08;
-      letter-spacing: -0.045em;
-      font-weight: 700;
+    }
+
+    .service h2 br {
+      display: none;
     }
 
     .service .lead {
-      min-height: 74px;
-      margin: 0 0 14px;
-      color: var(--text);
+      min-height: 0;
+      margin-bottom: 12px;
       font-size: 17px;
-      line-height: 1.42;
-      font-weight: 500;
+      line-height: 1.45;
     }
 
     .service p {
-      max-width: none;
-      margin: 0;
-      color: var(--muted);
-      font-size: 15.5px;
-      line-height: 1.56;
+      font-size: 16px;
+      line-height: 1.62;
     }
 
     .audience-copy,
     .expertise-copy {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 42px;
-      align-items: start;
+      grid-template-columns: 1fr;
+      gap: 24px;
     }
 
     .audience-copy > *,
     .expertise-copy > * {
-      margin: 0;
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
+      padding-top: 16px;
     }
 
     .audience-copy h2,
     .expertise-copy h2 {
-      max-width: 520px;
-      font-size: clamp(24px, 2vw, 29px);
-      line-height: 1.08;
-      letter-spacing: -0.045em;
-      font-weight: 700;
+      max-width: 100%;
+      font-size: 28px;
+      line-height: 1.12;
     }
 
     .audience-copy p,
     .expertise-copy p {
-      max-width: 560px;
-      color: var(--muted);
-      font-size: 15.5px;
-      line-height: 1.56;
-    }
-
-    .expertise-copy p strong {
-      color: var(--text);
-      font-weight: 700;
+      max-width: 100%;
+      font-size: 16px;
+      line-height: 1.62;
     }
 
     .clients-grid {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 30px;
-      align-items: center;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px 22px;
     }
 
     .client-logo {
-      min-height: 112px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px 12px;
+      min-height: 82px;
+      padding: 8px;
     }
 
-    .client-logo img {
-      display: block;
-      max-width: 100%;
-      max-height: 46px;
-      object-fit: contain;
-      opacity: 1;
-      transition: transform 160ms ease;
-    }
-
-    .client-logo:hover img {
-      transform: translateY(-1px);
-    }
-
-    .client-logo.logo-social img {
-      max-height: 72px;
-      max-width: 104px;
-    }
-
-    .client-logo.logo-dno img {
-      max-height: 76px;
-      max-width: 106px;
-    }
-
-    .client-logo.logo-adevinta img {
-      max-height: 48px;
-      max-width: 170px;
-    }
-
-    .client-logo.logo-marktplaats img {
-      max-height: 48px;
-      max-width: 190px;
-    }
-
+    .client-logo img,
+    .client-logo.logo-social img,
+    .client-logo.logo-dno img,
+    .client-logo.logo-adevinta img,
+    .client-logo.logo-marktplaats img,
     .client-logo.logo-netranks img {
-      max-height: 46px;
-      max-width: 190px;
+      max-width: 100%;
+      max-height: 54px;
     }
 
     .about {
-      display: grid;
-      grid-template-columns: 320px 1fr;
-      gap: 76px;
-      align-items: center;
+      grid-template-columns: 1fr;
+      gap: 36px;
     }
 
     .portrait {
-      width: 320px;
-      aspect-ratio: 1;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      overflow: hidden;
-      background: var(--surface);
+      width: min(230px, 68vw);
+      margin: 0 auto;
     }
 
-    .portrait img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      object-position: 56% 28%;
+    .about-copy {
+      text-align: left;
     }
 
     .about-copy h2,
     .contact h2 {
-      margin: 0;
-      font-size: clamp(42px, 6vw, 76px);
-      line-height: 1;
-      letter-spacing: -0.055em;
-    }
-
-    .about-copy > p:not(.section-label) {
-      max-width: 720px;
-      margin: 30px 0 0;
-      color: var(--muted);
-      font-size: clamp(18px, 1.8vw, 22px);
-      line-height: 1.58;
-      font-weight: 400;
+      font-size: clamp(42px, 12vw, 54px);
+      line-height: 1.02;
     }
 
     .credibility {
-      margin-top: 30px;
-      padding-top: 26px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 15.5px;
-      font-weight: 400;
-      line-height: 1.56;
-    }
-
-    .credibility p {
-      max-width: 720px;
-      margin: 0;
-    }
-
-    .credibility .about-personal-heading {
-      color: var(--muted);
-      font-weight: 700;
+      margin-top: 26px;
+      padding-top: 22px;
+      font-size: 16px;
+      line-height: 1.62;
     }
 
     .credibility .about-personal-body {
-      margin-top: 18px;
-      text-align: justify;
-      text-justify: inter-word;
-    }
-
-    .contact .section-label {
-      color: var(--violet);
+      margin-top: 16px;
+      text-align: left;
     }
 
     .contact {
-      position: relative;
-      overflow: hidden;
-      padding-bottom: 120px;
-    }
-
-    .contact::after {
-      content: "";
-      position: absolute;
-      right: 7%;
-      bottom: 70px;
-      width: 64px;
-      height: 8px;
-      border-radius: 20px;
-      background: var(--yellow);
+      padding-bottom: 84px;
     }
 
     .contact p {
-      max-width: 690px;
-      margin: 28px 0 38px;
-      color: var(--muted);
-      font-size: 21px;
+      margin: 24px 0 30px;
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .contact::after {
+      right: 18px;
+      bottom: 34px;
+      width: 48px;
+      height: 6px;
     }
 
     footer {
-      border-top: 1px solid var(--line);
-      padding: 30px 0;
-      color: var(--muted);
-      font-size: 13px;
+      padding: 26px 0 30px;
     }
 
     .footer-row {
-      display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-brand .brand-logo {
+      height: 56px;
     }
 
     .footer-meta {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 18px;
-      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      gap: 6px 14px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .container {
+      width: min(calc(100% - 28px), var(--max));
     }
 
-    @media (max-width: 1100px) {
-      .services-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 54px 42px;
-      }
-
-      .service,
-      .service:nth-child(4),
-      .service:nth-child(5) {
-        grid-column: auto;
-      }
-
-      .service h2,
-      .service .lead {
-        min-height: auto;
-      }
+    nav {
+      gap: 6px;
+      font-size: 11px;
     }
 
-    @media (max-width: 960px) {
-      .audience-copy,
-      .expertise-copy,
-      .about,
-      .hero-bottom {
-        grid-template-columns: 1fr;
-      }
-
-      .clients-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+    nav a {
+      padding: 8px 5px;
     }
 
-    @media (max-width: 620px) {
-      nav {
-        display: none;
-      }
-
-      .container {
-        width: min(calc(100% - 28px), var(--max));
-      }
-
-      .nav {
-        min-height: 82px;
-      }
-
-      .brand-logo {
-        height: 58px;
-      }
-
-      .footer-brand .brand-logo {
-        height: 52px;
-      }
-
-      .footer-meta {
-        width: 100%;
-        justify-content: flex-start;
-      }
-
-      .hero {
-        min-height: auto;
-        padding: 82px 0;
-      }
-
-      h1 {
-        font-size: 48px;
-        letter-spacing: -0.052em;
-      }
-
-      .hero-copy,
-      .about-copy > p:not(.section-label) {
-        font-size: 18px;
-      }
-
-      section {
-        padding: 82px 0;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-        gap: 52px;
-      }
-
-      .audience-copy,
-      .expertise-copy {
-        gap: 18px;
-      }
-
-      .audience-copy h2,
-      .expertise-copy h2 {
-        font-size: 30px;
-      }
-
-      .audience-copy p,
-      .expertise-copy p {
-        font-size: 16px;
-      }
-
-      .clients-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 24px;
-      }
-
-      .client-logo {
-        min-height: 96px;
-      }
-
-      .service h2 {
-        font-size: 30px;
-      }
-
-      .service .lead {
-        font-size: 17px;
-      }
-
-      .service p {
-        font-size: 16px;
-      }
-
-      .button {
-        width: 100%;
-      }
-
-      .portrait {
-        width: min(280px, 78vw);
-      }
-
-      .contact::after {
-        right: 24px;
-        bottom: 40px;
-      }
+    h1 {
+      font-size: 40px;
     }
-  </style>
+
+    .actions {
+      grid-template-columns: 1fr;
+    }
+
+    .clients-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .client-logo {
+      min-height: 72px;
+    }
+  }
+</style>
 </head>
 
 <body>
 
-  <header>
-    <div class="container nav">
-
-      <a
-        aria-label="Operanta Consulting — home"
-        class="brand"
-        href="#top"
-      >
-        <img
-          alt="Operanta Consulting by Chiara Graniero"
-          class="brand-logo"
-          height="144"
-          src="assets/operanta-primary-logo.png"
-          width="396"
-        >
-      </a>
-
-      <nav aria-label="Main navigation">
-        <a href="#services">What I do</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-    </div>
-  </header>
-
-  <main id="top">
-
-    <div class="container hero">
-      <div>
-
-        <p class="eyebrow">
-          Business Operations &amp; Program Management
-        </p>
-
-        <h1>
-          Making complex work<br>
-          easier to run.
-        </h1>
-
-        <div class="hero-bottom">
-
-          <p class="hero-copy">
-            Operanta helps growing and transforming teams bring structure to operations,
-            turn strategic priorities into execution, and build better ways of working.
-          </p>
-
-          <div class="actions">
-
-            <a
-              class="button primary"
-              href="#contact"
-            >
-              Work with me
-            </a>
-
-            <a
-              class="button secondary"
-              href="https://www.linkedin.com/in/chiaragraniero/"
-              rel="noopener"
-              target="_blank"
-            >
-              LinkedIn
-            </a>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <section id="services">
-      <div class="container">
-
-        <p class="section-label">What I do</p>
-
-        <div class="services-grid">
-
-          <article class="service">
-
-            <h2>
-              Business Operations &amp;<br>
-              Organisational Improvement
-            </h2>
-
-            <p class="lead">
-              Clearer, more effective and scalable ways of working.
-            </p>
-
-            <p>
-              I help teams design and improve operational workflows, onboarding journeys,
-              playbooks, accountability structures and day-to-day ways of working —
-              including processes that can support smarter tools, automation and
-              AI-enabled workflows.
-            </p>
-
-          </article>
-
-          <article class="service">
-
-            <h2>
-              Program<br>
-              Management
-            </h2>
-
-            <p class="lead">
-              Structure, rhythm and momentum for cross-functional initiatives.
-            </p>
-
-            <p>
-              I help turn strategic goals and business priorities into executable work
-              through clear planning, agile ways of working, governance, stakeholder
-              alignment and practical delivery management.
-            </p>
-
-          </article>
-
-          <article class="service">
-
-            <h2>
-              Digital Transformation<br>
-              &amp; AI
-            </h2>
-
-            <p class="lead">
-              Supporting the implementation and adoption of digital tools, automation
-              and AI-enabled workflows.
-            </p>
-
-            <p>
-              I help teams identify practical use cases, translate business needs into clear
-              requirements, coordinate implementation with technical partners, and embed new
-              tools into day-to-day work through testing, rollout, adoption and continuous
-              improvement.
-            </p>
-
-          </article>
-
-          <article class="service">
-
-            <h2>
-              Interim<br>
-              Leadership
-            </h2>
-
-            <p class="lead">
-              Providing temporary programme, operations or team leadership during growth,
-              change or transition.
-            </p>
-
-            <p>
-              I step into senior assignments to stabilise delivery, lead teams, establish
-              priorities and maintain continuity while the organisation builds permanent
-              capability or recruits long-term leadership.
-            </p>
-
-          </article>
-
-          <article class="service">
-
-            <h2>
-              People, Culture &amp;<br>
-              Inclusive Operations
-            </h2>
-
-            <p class="lead">
-              Working systems where people, leadership and execution are aligned.
-            </p>
-
-            <p>
-              I help organisations design inclusive leadership initiatives, DEI and talent
-              strategies, hiring and onboarding frameworks, team rituals, operating principles,
-              and culture and change adoption practices.
-            </p>
-
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="audience-section">
-      <div class="container">
-
-        <p class="section-label">Who I work with</p>
-
-        <div class="audience-copy">
-
-          <h2>
-            Teams navigating growth, change or operational complexity.
-          </h2>
-
-          <p>
-            I work with startups, scale-ups and enterprise teams that need clearer execution,
-            scalable operations and better ways of working.
-          </p>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="clients-section">
-      <div class="container">
-
-        <p class="section-label">I worked with</p>
-
-        <div
-          aria-label="Previous employers"
-          class="clients-grid"
-        >
-
-          <div class="client-logo logo-social">
-            <img
-              alt="The Social Hub"
-              src="assets/logo-the-social-hub.png"
-            >
-          </div>
-
-          <div class="client-logo logo-dno">
-            <img
-              alt="Dutch National Opera &amp; Ballet"
-              src="assets/logo-dutch-national-opera-ballet.png"
-            >
-          </div>
-
-          <div class="client-logo logo-adevinta">
-            <img
-              alt="Adevinta"
-              src="assets/logo-adevinta.png"
-            >
-          </div>
-
-          <div class="client-logo logo-marktplaats">
-            <img
-              alt="Marktplaats"
-              src="assets/logo-marktplaats.png"
-            >
-          </div>
-
-          <div class="client-logo logo-netranks">
-            <img
-              alt="NetRanks"
-              src="assets/logo-netranks.png"
-            >
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="expertise-section">
-      <div class="container">
-
-        <p class="section-label">Additional Expertise</p>
-
-        <div class="expertise-copy">
-
-          <h2>Team work</h2>
-
-          <p>
-            <strong>Need a broader team?</strong>
-            For assignments requiring additional expertise,
-            I can involve or introduce trusted specialists from my professional network.
-            This allows the full scope of your assignment to be covered while keeping
-            the assignment coordinated and practical.
-          </p>
-
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container about">
-
-        <div
-          aria-label="Photo of Chiara Graniero"
-          class="portrait"
-        >
-          <img
-            alt="Chiara Graniero speaking during a presentation"
-            src="assets/chiara.png"
-          >
-        </div>
-
-        <div class="about-copy">
-
-          <p class="section-label">About</p>
-
-          <h2>Hi, I’m Chiara.</h2>
-
-          <p>
-            I’m an Amsterdam-based consultant working across business operations,
-            program management and organisational transformation. I combine strategic
-            thinking with hands-on execution, helping international teams create clarity,
-            improve processes and move complex work forward.
-          </p>
-
-          <div class="credibility">
-
-            <p class="about-personal-heading">
-              European at heart. Made in Italy. Adopted by the Netherlands.
-            </p>
-
-            <p class="about-personal-body">
-              I’m comfortable working across different environments and cultures,
-              and stepping into unfamiliar domains has never held me back.
-              I care deeply about inclusive leadership and use data to support
-              better decisions. I’m known for building trust quickly and reading
-              the room. My leadership style combines strategic thinking,
-              emotional intelligence and a strong focus on delivery.
-            </p>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section
-      class="contact"
-      id="contact"
+<header>
+  <div class="container nav">
+
+    <a
+      aria-label="Operanta Consulting — home"
+      class="brand"
+      href="#top"
     >
-      <div class="container">
+      <img
+        alt="Operanta Consulting by Chiara Graniero"
+        class="brand-logo"
+        height="144"
+        src="assets/operanta-primary-logo.png"
+        width="396"
+      />
+    </a>
 
-        <p class="section-label">Contact</p>
+    <nav aria-label="Main navigation">
+      <a href="#services">What I do</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-        <h2>Let’s make it work.</h2>
+  </div>
+</header>
 
-        <p>
-          Available for freelance projects, interim assignments and selected collaborations
-          with startups, scale-ups and enterprise teams.
+<main id="top">
+
+  <div class="container hero">
+    <div>
+
+      <p class="eyebrow">
+        Business Operations &amp; Program Management
+      </p>
+
+      <h1>
+        Making complex work<br/>
+        easier to run.
+      </h1>
+
+      <div class="hero-bottom">
+
+        <p class="hero-copy">
+          Operanta helps growing and transforming teams bring structure to operations,
+          turn strategic priorities into execution, and build better ways of working.
         </p>
 
         <div class="actions">
 
           <a
             class="button primary"
-            href="mailto:chiara@operanta.co"
+            href="#contact"
           >
-            Email me
+            Work with me
           </a>
 
           <a
@@ -949,33 +853,318 @@
 
         </div>
       </div>
-    </section>
+    </div>
+  </div>
 
-  </main>
+  <section id="services">
+    <div class="container">
 
-  <footer>
-    <div class="container footer-row">
+      <p class="section-label">What I do</p>
+
+      <div class="services-grid">
+
+        <article class="service">
+
+          <h2>
+            Business Operations &amp;<br/>
+            Organisational Improvement
+          </h2>
+
+          <p class="lead">
+            Clearer, more effective and scalable ways of working.
+          </p>
+
+          <p>
+            I help teams design and improve operational workflows, onboarding journeys,
+            playbooks, accountability structures and day-to-day ways of working -
+            including processes that can support smarter tools, automation and
+            AI-enabled workflows.
+          </p>
+
+        </article>
+
+        <article class="service">
+
+          <h2>
+            Program<br/>
+            Management
+          </h2>
+
+          <p class="lead">
+            Structure, rhythm and momentum for cross-functional initiatives.
+          </p>
+
+          <p>
+            I help turn strategic goals and business priorities into executable work
+            through clear planning, agile ways of working, governance, stakeholder
+            alignment and practical delivery management.
+          </p>
+
+        </article>
+
+        <article class="service">
+
+          <h2>
+            Digital Transformation<br/>
+            &amp; AI
+          </h2>
+
+          <p class="lead">
+            Supporting the implementation and adoption of digital tools, automation
+            and AI-enabled workflows.
+          </p>
+
+          <p>
+            I help teams identify practical use cases, translate business needs into clear
+            requirements, coordinate implementation with technical partners, and embed new
+            tools into day-to-day work through testing, rollout, adoption and continuous
+            improvement.
+          </p>
+
+        </article>
+
+        <article class="service">
+
+          <h2>
+            Interim<br/>
+            Leadership
+          </h2>
+
+          <p class="lead">
+            Providing temporary programme, operations or team leadership during growth,
+            change or transition.
+          </p>
+
+          <p>
+            I step into senior assignments to stabilise delivery, lead teams, establish
+            priorities and maintain continuity while the organisation builds permanent
+            capability or recruits long-term leadership.
+          </p>
+
+        </article>
+
+        <article class="service">
+
+          <h2>
+            People, Culture &amp;<br/>
+            Inclusive Operations
+          </h2>
+
+          <p class="lead">
+            Working systems where people, leadership and execution are aligned.
+          </p>
+
+          <p>
+            I help organisations design inclusive leadership initiatives, DEI and talent
+            strategies, hiring and onboarding frameworks, team rituals, operating principles,
+            and culture and change adoption practices.
+          </p>
+
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="audience-section">
+    <div class="container">
+
+      <p class="section-label">Who I work with</p>
+
+      <div class="audience-copy">
+
+        <h2>
+          Teams navigating growth, change or operational complexity.
+        </h2>
+
+        <p>
+          I work with startups, scale-ups and enterprise teams that need clearer execution,
+          scalable operations and better ways of working.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="clients-section">
+    <div class="container">
+
+      <p class="section-label">I worked with</p>
 
       <div
-        aria-label="Operanta Consulting"
-        class="brand footer-brand"
+        aria-label="Previous employers"
+        class="clients-grid"
+      >
+
+        <div class="client-logo logo-social">
+          <img
+            alt="The Social Hub"
+            src="assets/logo-the-social-hub.png"
+          />
+        </div>
+
+        <div class="client-logo logo-dno">
+          <img
+            alt="Dutch National Opera &amp; Ballet"
+            src="assets/logo-dutch-national-opera-ballet.png"
+          />
+        </div>
+
+        <div class="client-logo logo-adevinta">
+          <img
+            alt="Adevinta"
+            src="assets/logo-adevinta.png"
+          />
+        </div>
+
+        <div class="client-logo logo-marktplaats">
+          <img
+            alt="Marktplaats"
+            src="assets/logo-marktplaats.png"
+          />
+        </div>
+
+        <div class="client-logo logo-netranks">
+          <img
+            alt="NetRanks"
+            src="assets/logo-netranks.png"
+          />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="expertise-section">
+    <div class="container">
+
+      <p class="section-label">Additional Expertise</p>
+
+      <div class="expertise-copy">
+
+        <h2>Team work</h2>
+
+        <p>
+          <strong>Need a broader team?</strong>
+          For assignments requiring additional expertise,
+          I can involve or introduce trusted specialists from my professional network.
+          This allows the full scope of your assignment to be covered while keeping
+          the assignment coordinated and practical.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container about">
+
+      <div
+        aria-label="Photo of Chiara Graniero"
+        class="portrait"
       >
         <img
-          alt="Operanta Consulting by Chiara Graniero"
-          class="brand-logo"
-          height="144"
-          src="assets/operanta-primary-logo.png"
-          width="396"
-        >
+          alt="Chiara Graniero speaking during a presentation"
+          src="assets/chiara.png"
+        />
       </div>
 
-      <div class="footer-meta">
-        <span>© 2026 Operanta</span>
-        <span>Amsterdam · Working across Europe</span>
-      </div>
+      <div class="about-copy">
 
+        <p class="section-label">About</p>
+
+        <h2>Hi, I’m Chiara.</h2>
+
+        <p>
+          I’m an Amsterdam-based consultant working across business operations,
+          program management and organisational transformation. I combine strategic
+          thinking with hands-on execution, helping international teams create clarity,
+          improve processes and move complex work forward.
+        </p>
+
+        <div class="credibility">
+
+          <p class="about-personal-heading">
+            European at heart. Made in Italy. Adopted by the Netherlands.
+          </p>
+
+          <p class="about-personal-body">
+            I’m comfortable working across different environments and cultures,
+            and stepping into unfamiliar domains has never held me back.
+            I care deeply about inclusive leadership and use data to support
+            better decisions. I’m known for building trust quickly and reading
+            the room. My leadership style combines strategic thinking,
+            emotional intelligence and a strong focus on delivery.
+          </p>
+
+        </div>
+      </div>
     </div>
-  </footer>
+  </section>
+
+  <section
+    class="contact"
+    id="contact"
+  >
+    <div class="container">
+
+      <p class="section-label">Contact</p>
+
+      <h2>Let’s make it work.</h2>
+
+      <p>
+        Available for freelance projects, interim assignments and selected collaborations
+        with startups, scale-ups and enterprise teams.
+      </p>
+
+      <div class="actions">
+
+        <a
+          class="button primary"
+          href="mailto:chiara@operanta.co"
+        >
+          Email me
+        </a>
+
+        <a
+          class="button secondary"
+          href="https://www.linkedin.com/in/chiaragraniero/"
+          rel="noopener"
+          target="_blank"
+        >
+          LinkedIn
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container footer-row">
+
+    <div
+      aria-label="Operanta Consulting"
+      class="brand footer-brand"
+    >
+      <img
+        alt="Operanta Consulting by Chiara Graniero"
+        class="brand-logo"
+        height="144"
+        src="assets/operanta-primary-logo.png"
+        width="396"
+      />
+    </div>
+
+    <div class="footer-meta">
+      <span>
+        © 2026 Operanta by Chiara Graniero | KVK 42113573 | Amsterdam · Working across Europe
+      </span>
+    </div>
+
+  </div>
+</footer>
 
 </body>
 </html>
