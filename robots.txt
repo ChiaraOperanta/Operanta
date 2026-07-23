@@ -28,6 +28,9 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
+User-agent: CCBot
+Allow: /
+
 User-agent: *
 Allow: /
 
